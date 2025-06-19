@@ -1,0 +1,24 @@
+.build:
+  stage: build
+  script:
+    - ./gradlew build
+
+build:java8:
+  image: eclipse-temurin:8-jdk
+  extends: .build
+
+build:java11:
+  image: eclipse-temurin:11-jdk
+  extends: .build
+
+build:java17:
+  image: eclipse-temurin:17-jdk
+  extends: .build
+
+build:java21:
+  image: eclipse-temurin:21-jdk
+  extends: .build
+
+build:java24:
+  image: eclipse-temurin:24-jdk
+  extends: .build
