@@ -1,7 +1,30 @@
 .build:
+  variables:
+    GRADLE_USER_HOME: $CI_PROJECT_DIR/.gradle
   stage: build
   script:
     - ./gradlew build
+  cache:
+    - key:
+        files:
+          - gradle/wrapper/gradle-wrapper.properties
+      paths:
+        - .gradle/wrapper
+    - key: $CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - master-protected
+      paths:
+        - .gradle/caches
+#   artifacts:
+#     when: always
+#     paths:
+#       - build/test-results/
+#       - build/reports/jacoco/
+#     reports:
+#       junit: build/test-results/**/TEST-*.xml
+#       coverage_report:
+#         coverage_format: jacoco
+#         path: build/reports/jacoco/**/*.xml
 
 build:java8:
   image: eclipse-temurin:8-jdk
