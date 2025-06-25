@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    //id 'eclipse'
     id "org.xbib.gradle.plugin.jflex" version "1.7.0"
 }
 
@@ -9,22 +8,14 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    jflexGeneration
-}
-
-
 sourceSets {
     main {
         java {
             sourceCompatibility = 1.8
             targetCompatibility = 1.8
-            // srcDir 'src/main/java'
         }
         jflex {
             // srcDir 'src/main/jflex'
-        }
-        test {
         }
     }
 }
@@ -43,11 +34,13 @@ jar {
     }
 }
 
-build.mustRunAfter clean
+tasks.named('build') {
+    mustRunAfter clean
+}
 
 // Integration avec eclipse
 // on configure le plugin eclipse s'il est actif
 pluginManager.withPlugin('eclipse'){
     // tasks to run when build automatically is enabled
-    eclipse.autoBuildTasks([tasks.named('generateCup'), tasks.named('generateJflex')])
+    eclipse.autoBuildTasks([tasks.named('generateJflex')])
 }
