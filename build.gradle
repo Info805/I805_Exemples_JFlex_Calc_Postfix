@@ -11,13 +11,17 @@ repositories {
 sourceSets {
     main {
         java {
-            sourceCompatibility = 1.8
-            targetCompatibility = 1.8
+            // srcDir 'src/main/java'
         }
         jflex {
             // srcDir 'src/main/jflex'
         }
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 jflex {
