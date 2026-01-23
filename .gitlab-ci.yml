@@ -1,3 +1,13 @@
+stages:
+  - build
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 .build:
   variables:
     GRADLE_USER_HOME: $CI_PROJECT_DIR/.gradle
